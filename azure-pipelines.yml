@@ -25,3 +25,12 @@ steps:
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
+
+  - task: SendEmail@1
+  displayName: 'Send an email with subject Job A failed!'
+  inputs:
+    To: 'kkandikatla@signifyhealth.com'
+    From: 'kkandikatla@signifyhealth.com'
+    Subject: 'Job A failed!'
+    SmtpServer: 'my smtp server'
+  condition: failed()
